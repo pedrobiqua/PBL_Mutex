@@ -15,9 +15,10 @@ public class GeradorImpares extends Thread {
         try {
 
             Random r = new Random();
-            
+            Random time = new Random();
+
             while (Chave.count < Chave.chave.length - 1) {
-                Thread.sleep(1000);
+                Thread.sleep(time.nextInt(3000 - 1000) + 1000);
                 mutex.acquire(); // esperar
                     int randomIndex = r.nextInt(Chave.listaImpar.size());
                     int temp =  Chave.listaImpar.get(randomIndex);
