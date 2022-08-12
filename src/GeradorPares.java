@@ -17,16 +17,19 @@ public class GeradorPares extends Thread {
             Random r = new Random();
             Random time = new Random();
             
-            while (Chave.count < Chave.chave.length - 1) {
-                Thread.sleep(time.nextInt(3000 - 1000) + 1000);
+            while (Contador.getCount() < Chave.chave.length - 1) {
+                Thread.sleep(time.nextInt(300 - 100) + 100);
                 mutex.acquire(); // esperar
                     int randomIndex = r.nextInt(Chave.listaPar.size());
                     int temp =  Chave.listaPar.get(randomIndex);
-                    Chave.chave[Chave.count] = temp;
-                    Chave.contadorPares += temp;
+                    if (Contador.getCount() < Chave.chave.length ) {
+                        Chave.chave[Contador.getCount()] = temp;
+                        Chave.contadorPares++;
 
-                    System.out.println("PAR("+ (Chave.count + 1) +"): " + Chave.listaPar.get(randomIndex));
-                    Chave.count++;
+                        System.out.println("PAR("+ (Contador.getCount() + 1) +"): " + Chave.listaPar.get(randomIndex));
+                        Contador.setCount();    
+                    }
+                    
                 mutex.release(); // sinalizar
             }
             

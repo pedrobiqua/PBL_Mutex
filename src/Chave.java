@@ -1,8 +1,7 @@
 import java.util.ArrayList;
 
 public class Chave {
-    public static int[] chave = new int[30];
-    public static int count = 0;
+    public static int[] chave = new int[100];
 
     public static ArrayList<Integer> listaPar = new ArrayList<Integer>();
     public static ArrayList<Integer> listaImpar = new ArrayList<Integer>();

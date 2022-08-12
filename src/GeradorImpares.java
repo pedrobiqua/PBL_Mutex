@@ -17,16 +17,18 @@ public class GeradorImpares extends Thread {
             Random r = new Random();
             Random time = new Random();
 
-            while (Chave.count < Chave.chave.length - 1) {
-                Thread.sleep(time.nextInt(3000 - 1000) + 1000);
+            while (Contador.getCount() < Chave.chave.length - 1) {
+                Thread.sleep(time.nextInt(300 - 100) + 100);
                 mutex.acquire(); // esperar
                     int randomIndex = r.nextInt(Chave.listaImpar.size());
                     int temp =  Chave.listaImpar.get(randomIndex);
-                    Chave.chave[Chave.count] = temp;
-                    Chave.contadorImpar += temp;
+                    if (Contador.getCount() < Chave.chave.length ) {
+                        Chave.chave[Contador.getCount()] = temp;
+                        Chave.contadorImpar ++;
 
-                    System.out.println("IMPAR("+ (Chave.count + 1) +"): " + Chave.listaImpar.get(randomIndex));
-                    Chave.count++;
+                        System.out.println("IMPAR("+ (Contador.getCount() + 1) +"): " + Chave.listaImpar.get(randomIndex));
+                        Contador.setCount();
+                    }
                 mutex.release(); // sinalizar
             }
 
